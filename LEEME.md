@@ -5,6 +5,10 @@ Los participantes siguen el reloj del proyector; no necesitan dispositivos.
 
 ## Abrir
 
+Para usar la versión de Windows sin instalar Python, descarga el ZIP de
+https://github.com/windowsbitlocker/turno/releases, extráelo y abre **Turno.exe**.
+Incluye soporte de logos. Disponible para Windows 10/11 de 64 bits.
+
 Haz doble clic en **Iniciar temporizador.cmd**, o usa el acceso directo
 **Temporizador de debate** del Escritorio. Se necesita Python con Tkinter.
 Se requiere Python 3.10 o posterior. Pillow es opcional para mostrar logos.

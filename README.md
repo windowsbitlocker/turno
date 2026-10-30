@@ -5,6 +5,14 @@ Manage speaking turns, preparation periods, and rebuttals, customize event detai
 and adjust the display live—all offline.
 The interface is in Spanish. Participants do not need electronic devices.
 
+## Windows download
+
+Download the **Windows x64 ZIP** from [GitHub Releases](https://github.com/windowsbitlocker/turno/releases),
+extract it, and open **Turno.exe**. Python installation is not needed. The portable
+package includes logo support, third-party notices, and the MIT license.
+
+The first release targets Windows 10/11 on 64-bit Intel/AMD PCs. It is unsigned.
+
 ## Run from source
 
 Requires Python **3.10 or newer** with Tkinter. There are no mandatory third-party
@@ -85,6 +93,24 @@ python -B -m unittest discover -s tests -p test_domain.py -v
 
 The integration suite checks manual robo deduction, clock accuracy, configuration
 round-tripping, projector-only size controls, and simulated slider mouse dragging.
+
+## Build the Windows executable
+
+On Windows with Python 3.14 and Tkinter:
+
+```powershell
+python -m pip install -r requirements-build.txt
+.\Build-Windows.ps1
+```
+
+The script builds a standalone `dist/Turno.exe`, runs a bundled-application smoke
+check, and creates `dist/Turno-v0.1.0-Windows-x64.zip` with SHA-256 checksums.
+The smoke check exercises the frozen executable, its logo renderer and size editor,
+and its timer/robo controls. A successful local check does not replace testing on
+other Windows machines.
+
+`Turno.spec` controls bundling, `tools/` contains icon/package generation, and
+`packaging/` contains Windows metadata and runtime license notices.
 
 ## Sharing this project
 
