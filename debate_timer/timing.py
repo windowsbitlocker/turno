@@ -2,11 +2,12 @@
 import time
 from .models import PhaseSettings
 from .phases import build_phases
+from .templates import compile_template
 
 
 class TimingMixin:
-    def rebuild_phases(self):
-        settings = PhaseSettings(
+    def phase_settings(self):
+        return PhaseSettings(
             favor=self.team_favor_var.get().strip() or "Equipo a favor",
             against=self.team_against_var.get().strip() or "Equipo en contra",
             prep_min=self.safe_int(self.prep_min, 1),
@@ -20,7 +21,12 @@ class TimingMixin:
             short_warning_sec=self.safe_int(self.warning_short_sec, 10),
             jury_warning_sec=self.safe_int(self.warning_jury_sec, 60),
         )
-        self.phases = build_phases(settings)
+
+    def rebuild_phases(self):
+        if self.active_template is not None:
+            self.phases = compile_template(self.active_template)
+        else:
+            self.phases = build_phases(self.phase_settings())
 
     def load_phase(self, index):
         if not self.phases:
@@ -35,6 +41,7 @@ class TimingMixin:
         self.robo_team = ""
         self.robo_remaining_ms = 0
         self.robo_max_ms = 0
+        self.robo_deduct = True
         self.last_tick_time = None
         self.update_all_labels()
 

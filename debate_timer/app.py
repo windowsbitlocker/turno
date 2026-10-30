@@ -13,9 +13,10 @@ from .shortcuts import ShortcutMixin
 from .timing import TimingMixin
 from .rebuttal import RebuttalMixin
 from .configuration import ConfigurationMixin
+from .template_controller import TemplateMixin
 
 
-class TemporizadorDebate(StyleMixin, SettingsPanelMixin, OperatorPanelMixin, ProjectorMixin, LogoMixin, PresenterMixin, ShortcutMixin, TimingMixin, RebuttalMixin, ConfigurationMixin):
+class TemporizadorDebate(StyleMixin, SettingsPanelMixin, OperatorPanelMixin, ProjectorMixin, LogoMixin, PresenterMixin, ShortcutMixin, TimingMixin, RebuttalMixin, ConfigurationMixin, TemplateMixin):
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Controles del Temporizador")
@@ -54,6 +55,8 @@ class TemporizadorDebate(StyleMixin, SettingsPanelMixin, OperatorPanelMixin, Pro
         self.setup_styles()
 
         self.phases: List[Phase] = []
+        self.active_template = None
+        self.template_editor = None
         self.phase_index = 0
 
         self.remaining_ms = 0

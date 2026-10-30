@@ -26,6 +26,18 @@ Conserva la carpeta **debate_timer/** junto a los lanzadores. El archivo antiguo
 
 ## Uso
 
+### Formatos por bloques (versión de código fuente)
+
+Abre **Configuración → Editor por bloques…** para construir un formato con etapas,
+equipos y repeticiones. Arrastra los bloques para ordenarlos y selecciona uno para
+editar sus propiedades. Guarda una plantilla reutilizable con **Guardar…**.
+**Aplicar al debate** pide confirmación y reinicia el debate con esa secuencia.
+Editar el borrador no interrumpe el reloj. Tu configuración completa también guarda
+la plantilla activa. Más información en **docs/BLOCK_EDITOR.md**.
+
+La descarga de Windows v0.1.0 es anterior a esta función. Para probarla desde el código:
+`python -m debate_timer --edit-template`.
+
 - **Iniciar / Pausar** controla el turno actual.
 - **Anterior / Siguiente** cambia de turno.
 - **−10 s / +10 s** ajusta el tiempo; **Reiniciar turno** repone su duración.

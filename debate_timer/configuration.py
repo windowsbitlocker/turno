@@ -1,6 +1,7 @@
 """Settings application and backward-compatible JSON import/export."""
 from tkinter import filedialog, messagebox
 from .storage import load_config, save_config
+from .templates import template_from_dict, template_to_dict
 
 
 class ConfigurationMixin:
@@ -17,6 +18,7 @@ class ConfigurationMixin:
         self.load_phase(min(old_index, len(self.phases) - 1))
         self.display_title_label.config(text=self.title_var.get().strip() or "Temporizador de Debate")
         self.load_logos()
+        self.refresh_template_status()
 
     def get_config(self):
         return {
@@ -25,6 +27,7 @@ class ConfigurationMixin:
             "equipo_en_contra": self.team_against_var.get(),
             "logo_paths": self.logo_paths,
             "tamanos_interfaz": self.size_editor.export(),
+            "plantilla": template_to_dict(self.active_template) if self.active_template else None,
             "tiempos": {
                 "preparacion_min": self.safe_int(self.prep_min, 1),
                 "presentacion_min": self.safe_int(self.opening_min, 3),
@@ -45,6 +48,7 @@ class ConfigurationMixin:
         }
 
     def apply_config(self, data):
+        candidate = template_from_dict(data["plantilla"]) if data.get("plantilla") is not None else None
         self.title_var.set(data.get("titulo", "Debate de Historia"))
         self.team_favor_var.set(data.get("equipo_a_favor", "Equipo a favor"))
         self.team_against_var.set(data.get("equipo_en_contra", "Equipo en contra"))
@@ -71,6 +75,7 @@ class ConfigurationMixin:
         self.warning_jury_sec.set(avanzado.get("aviso_jurado_sec", 60))
         self.steal_limit_sec.set(avanzado.get("limite_robo_sec", 120))
 
+        self.active_template = candidate
         self.apply_settings()
         self.size_editor.restore(data.get("tamanos_interfaz", {}))
 

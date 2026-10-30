@@ -37,6 +37,11 @@ Or install the package without logo support with `python -m pip install .` and r
 
 ## Features
 
+The source working copy also includes a [visual block editor](docs/BLOCK_EDITOR.md)
+for custom formats, teams, per-stage robo rules, and nested repeat blocks. Open it
+with `python -m debate_timer --edit-template`. This feature is newer than the
+published Windows v0.1.0 build.
+
 - Operator and projector windows, including projector fullscreen mode.
 - Twenty debate phases, editable teams, durations, and warning thresholds.
 - Start/pause, navigation, reset, and manual time adjustments.
@@ -53,6 +58,8 @@ See [LEEME.md](LEEME.md) for usage instructions in Spanish.
 | --- | --- |
 | `debate_timer/app.py` | Assemble the application, initialize state, manage window lifecycle |
 | `debate_timer/models.py` | Phase and phase-settings data structures |
+| `debate_timer/templates.py` | Template data, validation, repeat expansion, and block editing operations |
+| `debate_timer/template_controller.py` | Apply a validated template to the timer |
 | `debate_timer/phases.py` | Build the ordered debate schedule, independent of Tkinter |
 | `debate_timer/timing.py` | Countdown, pause/resume, navigation, and time adjustment |
 | `debate_timer/rebuttal.py` | Robo eligibility, its separate countdown, and time deduction |
@@ -67,6 +74,7 @@ See [LEEME.md](LEEME.md) for usage instructions in Spanish.
 | `debate_timer/ui/styles.py` | Shared colors, typography, and widget helpers |
 | `debate_timer/ui/logos.py` | Optional logo loading and rendering |
 | `debate_timer/ui/size_editor.py` | Live sizing of projector elements only |
+| `debate_timer/ui/block_editor.py` | Visual block palette, drag ordering, properties, teams, and template files |
 
 `app.py` combines focused mixins that operate on the application's shared state.
 Only the application owns Tk windows and schedules countdown callbacks. The pure

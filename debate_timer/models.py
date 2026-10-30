@@ -2,6 +2,14 @@
 from dataclasses import dataclass
 
 
+@dataclass(frozen=True)
+class RebuttalRule:
+    team: str
+    ms: int
+    window_ms: int
+    deduct: bool = True
+
+
 @dataclass
 class Phase:
     name: str
@@ -9,6 +17,8 @@ class Phase:
     ms: int
     warning_at_ms: int = 0
     kind: str = "normal"
+    template_defined: bool = False
+    rebuttal: RebuttalRule | None = None
 
 
 @dataclass(frozen=True)

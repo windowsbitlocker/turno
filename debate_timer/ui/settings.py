@@ -34,10 +34,12 @@ class SettingsPanelMixin:
         ttk.Entry(info_frame, textvariable=self.title_var, style="Clean.TEntry").grid(row=0, column=1, sticky="ew", padx=pad, pady=4)
 
         tk.Label(info_frame, text="Equipo a favor", bg=self.CARD_BG, fg=self.TEXT_SOFT, font=LBL).grid(row=1, column=0, sticky="w", padx=pad, pady=4)
-        ttk.Entry(info_frame, textvariable=self.team_favor_var, style="Clean.TEntry").grid(row=1, column=1, sticky="ew", padx=pad, pady=4)
+        self.legacy_favor_entry = ttk.Entry(info_frame, textvariable=self.team_favor_var, style="Clean.TEntry")
+        self.legacy_favor_entry.grid(row=1, column=1, sticky="ew", padx=pad, pady=4)
 
         tk.Label(info_frame, text="Equipo en contra", bg=self.CARD_BG, fg=self.TEXT_SOFT, font=LBL).grid(row=2, column=0, sticky="w", padx=pad, pady=4)
-        ttk.Entry(info_frame, textvariable=self.team_against_var, style="Clean.TEntry").grid(row=2, column=1, sticky="ew", padx=pad, pady=4)
+        self.legacy_against_entry = ttk.Entry(info_frame, textvariable=self.team_against_var, style="Clean.TEntry")
+        self.legacy_against_entry.grid(row=2, column=1, sticky="ew", padx=pad, pady=4)
 
         self.make_button(info_frame, "Elegir logos", self.choose_logos).grid(row=3, column=0, padx=pad, pady=6)
         self.make_button(info_frame, "Aplicar cambios", self.apply_settings, "Primary.TButton").grid(row=3, column=1, sticky="ew", padx=pad, pady=6)
@@ -49,7 +51,18 @@ class SettingsPanelMixin:
         self.make_button(file_frame, "Exportar configuración", self.export_config).pack(side="left", expand=True, fill="x", padx=5, pady=8)
         self.make_button(file_frame, "Importar configuración", self.import_config).pack(side="left", expand=True, fill="x", padx=5, pady=8)
 
-        times = self.card(self.advanced_tab, "Tiempos modificables")
+        formats = self.card(self.advanced_tab, "Formato del debate")
+        self.template_status = tk.Label(formats, text="Formato activo: Escolar (20 turnos)",
+                                        bg=self.BG, fg=self.TEXT_SOFT, anchor="w", wraplength=400)
+        self.template_status.pack(fill="x", pady=(0, 8))
+        tk.Label(formats, text="Con una plantilla, los equipos, tiempos y avisos se editan en sus bloques.",
+                 bg=self.BG, fg=self.TEXT_SOFT, wraplength=400, justify="left").pack(fill="x", pady=(0, 8))
+        self.make_button(formats, "Editor por bloques…", self.open_template_editor,
+                         "Primary.TButton").pack(fill="x", pady=(0, 8))
+        self.make_button(formats, "Volver al formato escolar", self.use_school_format).pack(fill="x")
+
+        times = self.card(self.advanced_tab, "Tiempos del formato escolar")
+        self.legacy_time_frame = times
 
         self.add_time_row(times, "Preparación / espera inicial, minutos", self.prep_min, 0)
         self.add_time_row(times, "Presentación inicial, minutos", self.opening_min, 1)

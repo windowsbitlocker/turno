@@ -11,6 +11,7 @@ class PresenterMixin:
             return
 
         phase = self.current_phase()
+        rule = self.current_steal_rule()
         robo_status_text = ""
 
         if self.robo_active:
@@ -23,11 +24,11 @@ class PresenterMixin:
         else:
             time_text = "¡TIEMPO!" if time_up else self.format_time(self.remaining_ms)
 
-            if phase.kind == "conclusion" and not time_up:
+            if rule is not None and not time_up:
                 if self.steal_used_this_phase:
                     robo_status_text = self.last_steal_note
                 else:
-                    steal_limit_ms = self.safe_int(self.steal_limit_sec, 120) * 1000
+                    steal_limit_ms = rule.window_ms
                     elapsed_ms = phase.ms - self.remaining_ms
                     if elapsed_ms < steal_limit_ms:
                         steal_left = steal_limit_ms - elapsed_ms
@@ -47,13 +48,13 @@ class PresenterMixin:
         self.next_button.state(["disabled"] if self.phase_index == len(self.phases) - 1 else ["!disabled"])
         upcoming = self.phases[self.phase_index + 1] if self.phase_index + 1 < len(self.phases) else None
         self.up_next_label.config(text=f"{upcoming.name} · {upcoming.team}" if upcoming else "Fin del debate")
-        if phase.kind == "conclusion":
+        if rule is not None:
             if not self.steal_panel.winfo_manager():
                 self.steal_panel.grid(row=3, column=0, sticky="ew", pady=(0, 16))
         else:
             self.steal_panel.grid_remove()
-        steal_limit = self.safe_int(self.steal_limit_sec, 120) * 1000
-        available = (phase.kind == "conclusion" and not self.robo_active
+        steal_limit = rule.window_ms if rule is not None else 0
+        available = (rule is not None and not self.robo_active
                      and not self.steal_used_this_phase and self.remaining_ms > 0
                      and phase.ms - self.remaining_ms < steal_limit)
         self.steal_button.state(["!disabled"] if available else ["disabled"])
