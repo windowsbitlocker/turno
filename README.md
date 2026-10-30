@@ -1,6 +1,8 @@
-# Debate Timer
+# Turno
 
-An offline desktop timer for a moderator/operator and a separate audience projector.
+Turno is an open-source debate timer with a dedicated operator panel and projector display.
+Manage speaking turns, preparation periods, and rebuttals, customize event details,
+and adjust the display live—all offline.
 The interface is in Spanish. Participants do not need electronic devices.
 
 ## Run from source
@@ -89,6 +91,6 @@ round-tripping, projector-only size controls, and simulated slider mouse draggin
 The source package excludes local logos, school documents, configuration exports,
 generated backups, and retired phone/build files. Users select their own logos.
 
-**A license has not been selected yet.** The project owner should choose and add a
-license before distributing this as an open-source project. No publication or upload
-is performed by the application or build tools.
+Licensed under the [MIT License](LICENSE).
+
+The application operates offline; it does not publish or upload debate data.

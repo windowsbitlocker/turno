@@ -14,4 +14,4 @@ affects persisted projector size identifiers; treat changes to it as configurati
 compatibility changes. Update tests and document any such migration.
 
 Do not commit local configurations, school logos/documents, generated archives,
-build tools, or private assets. Add a license selected by the owner before public release.
+build tools, or private assets. Contributions are distributed under the project's MIT License.
