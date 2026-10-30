@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.build-tools/
+.retired-phone-features-*/
+Temporizador-recuperado.zip
+Temporizador-source.zip
+logo 20 años.png
+*.pdf
+*.json
