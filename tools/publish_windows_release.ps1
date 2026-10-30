@@ -1,6 +1,6 @@
 param(
     [string]$Repository = 'windowsbitlocker/turno',
-    [string]$Tag = 'v0.1.0'
+    [string]$Tag = 'v0.2.0'
 )
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
@@ -43,17 +43,21 @@ Download **Turno-$Tag-Windows-x64.zip**, extract it, and open **Turno.exe**.
 No Python installation is needed. Windows 10/11, 64-bit Intel/AMD.
 
 - Operator panel and separate projector display.
-- Twenty configurable debate phases and operator-controlled robo/refutation.
+- Visual block editor: add, edit, duplicate, and drag stages into order.
+- Nested repeat blocks, configurable teams, and optional per-stage robo rules.
+- Save/load reusable templates with a total-duration preview.
+- The original school format and existing JSON configurations remain supported.
 - Live resizing of projector text and logos.
 - Optional logos are supported by the bundled app.
 - Completely offline; no contestant phones or network connection required.
 
 The ZIP includes the MIT license and third-party notices. SHA-256 checksums are attached.
 
-Validation: 15 automated source tests plus a smoke check of the compiled executable,
-including the clock, robo deduction, logo loading, and projector size editor.
+Validation: 31 automated source tests plus a smoke check of the compiled executable,
+including the block editor, nested repeats, template round-tripping, clock, robo
+deduction, logo loading, and projector size editor.
 
-This initial portable release is unsigned. It was checked on Windows 11; testing on
+This portable release is unsigned. It was checked on Windows 11; testing on
 additional Windows machines remains welcome.
 "@
 if (-not $turnoRelease) {

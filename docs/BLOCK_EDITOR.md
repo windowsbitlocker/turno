@@ -1,12 +1,11 @@
 # Visual debate templates
 
 This feature belongs to the **public Turno project**. It does not modify the user's
-independent personal timer. It is currently available in the source working copy;
-the published Windows v0.1.0 release predates it.
+independent personal timer. It is included in the Windows v0.2.0 release and the source package.
 
 ## Open
 
-Run Turno from source, then choose **Configuración → Editor por bloques…**, or run:
+Open Turno and choose **Configuración → Editor por bloques…**. From source, you can also run:
 
 ```console
 python -m debate_timer --edit-template

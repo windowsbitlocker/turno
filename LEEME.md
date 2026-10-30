@@ -26,7 +26,7 @@ Conserva la carpeta **debate_timer/** junto a los lanzadores. El archivo antiguo
 
 ## Uso
 
-### Formatos por bloques (versión de código fuente)
+### Formatos por bloques (desde v0.2.0)
 
 Abre **Configuración → Editor por bloques…** para construir un formato con etapas,
 equipos y repeticiones. Arrastra los bloques para ordenarlos y selecciona uno para
@@ -35,7 +35,7 @@ editar sus propiedades. Guarda una plantilla reutilizable con **Guardar…**.
 Editar el borrador no interrumpe el reloj. Tu configuración completa también guarda
 la plantilla activa. Más información en **docs/BLOCK_EDITOR.md**.
 
-La descarga de Windows v0.1.0 es anterior a esta función. Para probarla desde el código:
+Incluido en Turno.exe desde la versión v0.2.0. Para abrirlo directamente desde el código:
 `python -m debate_timer --edit-template`.
 
 - **Iniciar / Pausar** controla el turno actual.

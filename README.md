@@ -11,7 +11,7 @@ Download the **Windows x64 ZIP** from [GitHub Releases](https://github.com/windo
 extract it, and open **Turno.exe**. Python installation is not needed. The portable
 package includes logo support, third-party notices, and the MIT license.
 
-The first release targets Windows 10/11 on 64-bit Intel/AMD PCs. It is unsigned.
+The Windows release targets Windows 10/11 on 64-bit Intel/AMD PCs. It is unsigned.
 
 ## Run from source
 
@@ -37,13 +37,13 @@ Or install the package without logo support with `python -m pip install .` and r
 
 ## Features
 
-The source working copy also includes a [visual block editor](docs/BLOCK_EDITOR.md)
-for custom formats, teams, per-stage robo rules, and nested repeat blocks. Open it
-with `python -m debate_timer --edit-template`. This feature is newer than the
-published Windows v0.1.0 build.
+Turno v0.2.0 includes a [visual block editor](docs/BLOCK_EDITOR.md) for custom formats,
+teams, per-stage robo rules, and nested repeat blocks. Open **Configuración → Editor
+por bloques…**, or run `python -m debate_timer --edit-template` from source.
 
 - Operator and projector windows, including projector fullscreen mode.
-- Twenty debate phases, editable teams, durations, and warning thresholds.
+- Custom stage sequences, editable teams, durations, warnings, and repeated rounds.
+- The original 20-stage school format remains available.
 - Start/pause, navigation, reset, and manual time adjustments.
 - Operator-controlled robo/refutation during conclusions: only the time used is deducted.
 - Manual projector-only sizing: right-click a projector element or use the settings panel.
@@ -112,7 +112,7 @@ python -m pip install -r requirements-build.txt
 ```
 
 The script builds a standalone `dist/Turno.exe`, runs a bundled-application smoke
-check, and creates `dist/Turno-v0.1.0-Windows-x64.zip` with SHA-256 checksums.
+check, and creates `dist/Turno-v0.2.0-Windows-x64.zip` with SHA-256 checksums.
 The smoke check exercises the frozen executable, its logo renderer and size editor,
 and its timer/robo controls. A successful local check does not replace testing on
 other Windows machines.

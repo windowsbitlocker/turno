@@ -9,10 +9,12 @@ def smoke_test(report_path: str) -> None:
     from tkinter import font as tkfont
     from .app import TemporizadorDebate
     from .ui.logos import PIL_AVAILABLE
+    from . import __version__
+    from .templates import DebateTemplate, StageBlock, RepeatBlock, template_to_dict, template_from_dict
     report = Path(report_path).resolve()
     report.parent.mkdir(parents=True, exist_ok=True)
     app = None
-    result = {"ok": False, "frozen": bool(getattr(sys, "frozen", False))}
+    result = {"ok": False, "frozen": bool(getattr(sys, "frozen", False)), "version": __version__}
     try:
         app = TemporizadorDebate()
         app.root.withdraw()
@@ -38,8 +40,24 @@ def smoke_test(report_path: str) -> None:
         app.logo_paths = [str(logo)]
         app.load_logos()
         assert len(app.logo_imgs) == 1
+        template = DebateTemplate("Packaged block check", blocks=[RepeatBlock(2, [
+            StageBlock("Repeated speech", team_id="a", seconds=45, warning_seconds=5)])])
+        app.apply_template(template)
+        assert len(app.phases) == 2
+        app.open_template_editor()
+        editor = app.template_editor
+        editor.add_stage("questions")
+        editor.fields["seconds"].set("00:25")
+        editor.fields["warning_seconds"].set("5")
+        editor.save_block()
+        assert len(app.phases) == 2  # The editor's draft is isolated.
+        restored = template_from_dict(template_to_dict(editor.draft))
+        app.apply_template(restored)
+        assert len(app.phases) == 3 and app.phases[-1].ms == 25000
+        editor.window.withdraw()
         app.root.update()
-        result.update(ok=True, phases=20, logos=True, projector_editor=True, robo=True)
+        result.update(ok=True, school_phases=20, logos=True, projector_editor=True, robo=True,
+                      template_editor=True, nested_repeat=True, template_round_trip=True)
     except Exception as error:
         result["error"] = str(error)
         raise

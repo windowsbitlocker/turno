@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "debate-timer"
-version = "0.1.0"
+version = "0.2.0"
 description = "Offline two-window debate timer with operator-controlled rebuttal time"
 readme = "README.md"
 license = {file = "LICENSE"}

@@ -21,9 +21,10 @@ def package(root: Path):
         "F11: pantalla completa del proyector. Esc: salir de pantalla completa.\n"
         "Los robos son controlados por el operador. No se necesitan dispositivos para los equipos.\n"
         "Clic derecho en el proyector: ajustar el tamaño de cada elemento.\n"
-        "Exporta tu configuración para guardar tiempos, nombres y tamaños.\n\n"
+        "Configuración > Editor por bloques: crea formatos y repeticiones reutilizables.\n"
+        "Exporta tu configuración para guardar tiempos, nombres, plantillas y tamaños.\n\n"
         "Código fuente y documentación: https://github.com/windowsbitlocker/turno\n"
-        "Licencia MIT. Primera versión sin firma digital de editor.\n", encoding="utf-8")
+        "Licencia MIT. Versión sin firma digital de editor.\n", encoding="utf-8")
     licenses = folder / "licenses"
     licenses.mkdir(exist_ok=True)
     runtime_license = Path(sys.base_prefix) / "LICENSE.txt"
